@@ -9,18 +9,20 @@ import views.SignInView;
 import views.SignUpView;
 
 public class CoursexUI extends Application {
-    public Stage window;
+
+    public static Stage window;
+    public static SignUpView SignUpView = new SignUpView();
+    public static SignInView SignInView = new SignInView();
     public void start(Stage primaryStage) {
         window = primaryStage;
-        SignInView SignInView = new SignInView();
-        SignUpView SignUpView = new SignUpView();
 
-        SignInPresenter SignInPresenter = new SignInPresenter(SignInView, window );
-        SignUpPresenter SignUpPresenter = new SignUpPresenter(SignUpView, window );
+        SignInPresenter SignInPresenter = new SignInPresenter(SignInView);
+        SignUpPresenter SignUpPresenter = new SignUpPresenter(SignUpView);
 
         window.setTitle("courseX Platform");
-        Scene logInScene = new Scene(SignUpView, 450, 600);
-        window.setScene(logInScene);
+        Scene mainScene = new Scene(SignInView , 450, 600);
+
+        window.setScene(mainScene);
         window.setMaxHeight(window.getScene().getHeight()+20);
         window.setMaxWidth(window.getScene().getWidth()+20);
         window.setMinWidth(window.getScene().getWidth()+20);
