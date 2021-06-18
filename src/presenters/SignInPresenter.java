@@ -6,6 +6,7 @@ import coursex.CoursexUI;
 import models.user.UserDAO;
 import models.user.UserModel;
 import views.SignInView;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +22,6 @@ public class SignInPresenter {
         this.userDAO = new UserDAO();
         addHandlers();
         showSignUpView();
-
         emailValidation();
         passwordValidation();
     }
@@ -58,25 +58,21 @@ public class SignInPresenter {
             coursex.CoursexUI.window.getScene().setRoot(coursex.CoursexUI.SignUpView);
         });
     }
+
     private void emailValidation() {
-        this.SignInView.emailFld.setOnKeyPressed(e -> {
-            if (isValidEmail(this.SignInView.emailFld.getText()) ||(this.SignInView.emailFld.getText()==""))
-                this.SignInView.emailValidate.setVisible(false);
-            else
-                this.SignInView.emailValidate.setVisible(true);
+        this.signInView.emailFld.setOnKeyPressed(e -> {
+            this.signInView.emailValidate.setVisible(!isValidEmail(this.signInView.emailFld.getText()) && (!this.signInView.emailFld.getText().equals("")));
         });
     }
-    private void passwordValidation(){
-        this.SignInView.passwordFld.setOnKeyPressed(e -> {
-            if(isValidPassword(this.SignInView.passwordFld.getText()))
-                this.SignInView.passwordValidate.setVisible(false);
-            else
-                this.SignInView.passwordValidate.setVisible(true);
+
+    private void passwordValidation() {
+        this.signInView.passwordFld.setOnKeyPressed(e -> {
+            this.signInView.passwordValidate.setVisible(!isValidPassword(this.signInView.passwordFld.getText()));
         });
     }
-    public boolean isValidEmail(String email)
-    {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                 "A-Z]{2,7}$";
@@ -86,10 +82,9 @@ public class SignInPresenter {
             return false;
         return pat.matcher(email).matches();
     }
-    public boolean isValidPassword(String password){
-        if (password.length()<7)
-            return false;
-        return true;
+
+    public boolean isValidPassword(String password) {
+        return password.length() >= 7;
     }
 }
 
