@@ -8,7 +8,7 @@ import presenters.SignUpPresenter;
 import views.SignInView;
 import views.SignUpView;
 
-public class CourseX extends Application {
+public class CoursexUI extends Application {
 
     public static Stage window;
     public static SignUpView SignUpView = new SignUpView();
