@@ -23,6 +23,7 @@ public class SignUpView extends VBox {
     public PasswordField confirmPasswordFld = new PasswordField();
     public Button signUpBtn = new Button("SignUp");
 
+
     public HBox signInBox = new HBox();
     public Text accountLb = new Text("Already have an account?");
     public Button signInBtn = new Button("SignIn");

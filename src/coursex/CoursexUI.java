@@ -23,10 +23,6 @@ public class CoursexUI extends Application {
         Scene mainScene = new Scene(SignInView , 450, 600);
 
         window.setScene(mainScene);
-        window.setMaxHeight(window.getScene().getHeight()+20);
-        window.setMaxWidth(window.getScene().getWidth()+20);
-        window.setMinWidth(window.getScene().getWidth()+20);
-        window.setMinHeight(window.getScene().getHeight()+20);
         window.show();
     }
     public static void main(String[] args) {
