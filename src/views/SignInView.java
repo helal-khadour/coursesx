@@ -19,7 +19,10 @@ public class SignInView extends VBox {
     public TextField emailFld=new TextField();
     public PasswordField passwordFld=new PasswordField();
     public Button loginBtn=new Button("SignIn");
+    public Text emailValidate = new Text("please enter a valid email address");
+    public Text passwordValidate = new Text("password must be more than 8 characters");
 
+    public VBox filed = new VBox();
     public HBox signUpBox=new HBox();
     public Text createLb = new Text("Don't have an account?");
     public Button signUpBtn=new Button("SignUp");
@@ -45,28 +48,8 @@ public class SignInView extends VBox {
 
 
 
+        this.getChildren().add(this.filed);
 
-        this.getChildren().add(this.emailFld);
-        this.emailFld.setPromptText("Enter Your Email");
-        this.setMargin(this.emailFld,new Insets(120, 60, 10, 60));
-        this.emailFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
-        this.emailFld.setStyle(
-        "-fx-text-inner-color: white;" +
-        "-fx-control-inner-background: #1F1F21; " +
-        "-fx-background-color: -fx-control-inner-background;" +
-        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
-
-
-
-        this.getChildren().add(this.passwordFld);
-        this.setMargin(this.passwordFld,new Insets(10, 60, 20, 60));
-        this.passwordFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
-        this.passwordFld.setPromptText("Enter Your Password");
-        this.passwordFld.setStyle(
-        "-fx-text-inner-color: white;" +
-        "-fx-control-inner-background: #1F1F21; " +
-        "-fx-background-color: -fx-control-inner-background;" +
-        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
 
         this.getChildren().add(this.loginBtn);
         loginBtn.setStyle("-fx-background-color: white; -fx-min-height: 40; -fx-min-width: 150;");
@@ -74,10 +57,10 @@ public class SignInView extends VBox {
         this.loginBtn.setCursor(Cursor.HAND);
 
         signUpSection();
+        fieldSection();
         this.getChildren().add(this.signUpBox);
     }
     private void signUpSection() {
-        signUpBox.setAlignment(Pos.CENTER);
         this.setMargin(this.signUpBox,new Insets(10, 60, 20, 60));
         this.signUpBox.setAlignment(Pos.CENTER);
         this.signUpBox.getChildren().add(this.createLb);
@@ -89,4 +72,40 @@ public class SignInView extends VBox {
         this.signUpBtn.setCursor(Cursor.HAND);
 
     };
+    private void fieldSection() {
+        filed.setAlignment(Pos.CENTER_LEFT);
+        this.filed.getChildren().add(this.emailFld);
+        this.emailFld.setPromptText("Enter Your Email");
+        this.setMargin(this.emailFld,new Insets(120, 60, 3, 60));
+        this.emailFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.emailFld.setStyle(
+                "-fx-text-inner-color: white;" +
+                        "-fx-control-inner-background: #1F1F21; " +
+                        "-fx-background-color: -fx-control-inner-background;" +
+                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
+        this.filed.getChildren().add(this.emailValidate);
+        this.emailValidate.setFont(Font.font("roboto", FontWeight.NORMAL, 12));
+        this.emailValidate.setStyle("-fx-fill: #F82D56;");
+        this.emailValidate.setVisible(false);
+        this.setMargin(this.emailValidate,new Insets(0, 60, 0, 60));
+
+        this.filed.getChildren().add(this.passwordFld);
+        this.setMargin(this.passwordFld,new Insets(10, 60, 3, 60));
+        this.passwordFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.passwordFld.setPromptText("Enter Your Password");
+        this.passwordFld.setStyle(
+                "-fx-text-inner-color: white;" +
+                        "-fx-control-inner-background: #1F1F21; " +
+                        "-fx-background-color: -fx-control-inner-background;" +
+                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
+
+
+
+        this.filed.getChildren().add(this.passwordValidate);
+        this.passwordValidate.setFont(Font.font("roboto", FontWeight.NORMAL, 12));
+        this.passwordValidate.setStyle("-fx-fill: #F82D56;");
+        this.setMargin(this.passwordValidate,new Insets(0, 60, 15, 60));
+        this.passwordValidate.setVisible(false);
+
+    }
 }
