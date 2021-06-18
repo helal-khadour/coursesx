@@ -86,7 +86,7 @@ public class BasicDB {
             disconnect();
             return result;
         } catch (SQLException ex) {
-
+            ex.printStackTrace();
         }
         disconnect();
         return null;

@@ -18,7 +18,7 @@ public class UserDAO {
         return this.data;
     }
 
-    public boolean retrieve(String category) {
+    public boolean retrieveAllUsers() {
         this.data.clear();
         String query = "select * from users";
         ResultSet result = BasicDB.retrieve(query);
@@ -44,7 +44,7 @@ public class UserDAO {
     public void add(UserModel user) {
         this.data.clear();
         String query = "insert into users (name, email, password, is_instructor) values( '" +
-                user.getName() + "','" + user.getEmail() + "'," + user.getPassword() + "'," + user.isInstructor() + ")";
+                user.getName() + "','" + user.getEmail() + "'," + user.getPassword() + "," + user.isInstructor() + ")";
         int rows = BasicDB.manipulate(query);
         this.data.add(user);
     }
@@ -73,6 +73,7 @@ public class UserDAO {
                 temp.setPassword(result.getString(5));
                 temp.setInstructor(result.getBoolean(3));
                 this.data.add(temp);
+                System.out.println(temp.getEmail());
                 return true;
             }
         } catch (SQLException e) {
