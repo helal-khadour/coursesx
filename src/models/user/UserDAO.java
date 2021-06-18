@@ -41,6 +41,27 @@ public class UserDAO {
         return false;
     }
 
+    public boolean retrieveUser(String email, String password) {
+        this.data.clear();
+        String query = "select * from users where email = '" + email + "' and password = '" + password + "'";
+        ResultSet result = BasicDB.retrieve(query);
+
+        try {
+            if (!result.next())
+                return false;
+            UserModel temp = new UserModel();
+            temp.setName(result.getString(2));
+            temp.setEmail(result.getString(4));
+            temp.setPassword(result.getString(5));
+            temp.setInstructor(result.getBoolean(3));
+            this.data.add(temp);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public void add(UserModel user) {
         this.data.clear();
         String query = "insert into users (name, email, password, is_instructor) values( '" +
@@ -61,24 +82,5 @@ public class UserDAO {
         int rows = BasicDB.manipulate(query);
     }
 
-    public boolean getAllData() {
-        this.data.clear();
-        String query = "Select * from users";
-        ResultSet result = BasicDB.retrieve(query);
-        UserModel temp = new UserModel();
-        try {
-            while (result.next()) {
-                temp.setName(result.getString(2));
-                temp.setEmail(result.getString(4));
-                temp.setPassword(result.getString(5));
-                temp.setInstructor(result.getBoolean(3));
-                this.data.add(temp);
-                System.out.println(temp.getEmail());
-                return true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+
 }

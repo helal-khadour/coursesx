@@ -3,12 +3,10 @@ package presenters;
 import java.util.ArrayList;
 
 import coursex.CoursexUI;
+import javafx.scene.control.Alert;
 import models.user.UserDAO;
-import models.user.UserModel;
 import views.SignInView;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import utils.HelperFunctions;
 
 
 public class SignInPresenter {
@@ -31,22 +29,13 @@ public class SignInPresenter {
             String userEmail = this.signInView.emailFld.getText();
             String userPassword = this.signInView.passwordFld.getText();
 
-            if (userDAO.retrieveAllUsers()) {
-
-                ArrayList<UserModel> users = userDAO.getData();
-                for (UserModel user : users) {
-                    if (userEmail.equals(user.getEmail())) {
-                        if (userPassword.equals(user.getPassword())) {
-                            // TODO handle successful login
-                            System.out.println("Welcome back, " + user.getName());
-                        } else {
-                            // TODO handle wrong password error
-                            System.out.println("Wrong Password!");
-                        }
-                    }
-                }
-                // TODO handle email not found error
-                System.out.println("User not found!");
+            if (userDAO.retrieveUser(userEmail, userPassword)) {
+                // TODO handle successful login
+                System.out.println("Welcome back, " + userEmail);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Email or Password not correct!");
+                alert.show();
             }
 
         });
@@ -61,7 +50,8 @@ public class SignInPresenter {
 
     private void emailValidation() {
         this.signInView.emailFld.setOnKeyPressed(e -> {
-            this.signInView.emailValidate.setVisible(!isValidEmail(this.signInView.emailFld.getText()) && (!this.signInView.emailFld.getText().equals("")));
+            this.signInView.emailValidate.setVisible(!HelperFunctions.isValidEmail(this.signInView.emailFld.getText())
+                    && (!this.signInView.emailFld.getText().equals("")));
         });
     }
 
@@ -71,17 +61,6 @@ public class SignInPresenter {
         });
     }
 
-    public boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
-
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
 
     public boolean isValidPassword(String password) {
         return password.length() >= 7;
