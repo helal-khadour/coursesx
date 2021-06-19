@@ -32,6 +32,7 @@ public class SignInPresenter {
             if (userDAO.retrieveUser(userEmail, userPassword)) {
                 // TODO handle successful login
                 System.out.println("Welcome back, " + userEmail);
+                CoursexUI.myProfile = userDAO.getData().get(0);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Email or Password not correct!");

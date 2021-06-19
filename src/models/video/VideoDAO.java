@@ -65,8 +65,9 @@ public class VideoDAO {
     public void add(VideoModel video) {
         this.data.clear();
         String query = "insert into videos (name, url, course_id) values( '" +
-                video.getName() + "','" + video.getUrl() + "','"
-                + video.getId() + ")";
+                video.getName() + "','" + video.getUrl().replace("\\", "\\\\") + "',"
+                + video.getCourseId() + ")";
+
         int rows = BasicDB.manipulate(query);
         this.data.add(video);
     }

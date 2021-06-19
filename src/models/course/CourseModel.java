@@ -1,6 +1,9 @@
 package models.course;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import models.video.VideoModel;
 
 public class CourseModel {
     private int id;
@@ -9,30 +12,31 @@ public class CourseModel {
     private String banner;
     private Date createdAt;
     private String requirements;
-    private int tagId;
+    private String topic;
     private int instructorUserId;
+    private ArrayList<VideoModel> videos;
 
     public CourseModel() {
     }
 
-    public CourseModel(String title, String description, String banner, Date createdAt, String requirements, int tagId, int instructorUserId) {
+    public CourseModel(String title, String description, String banner, String requirements, String topic, int instructorUserId) {
         this.title = title;
         this.description = description;
         this.banner = banner;
-        this.createdAt = createdAt;
         this.requirements = requirements;
-        this.tagId = tagId;
+        this.topic = topic;
         this.instructorUserId = instructorUserId;
+        this.videos = new ArrayList<>();
     }
 
-    public CourseModel(int id, String title, String description, String banner, Date createdAt, String requirements, int tagId, int instructorUserId) {
+    public CourseModel(int id, String title, String description, String banner, Date createdAt, String requirements, String topic, int instructorUserId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.banner = banner;
         this.createdAt = createdAt;
         this.requirements = requirements;
-        this.tagId = tagId;
+        this.topic = topic;
         this.instructorUserId = instructorUserId;
     }
 
@@ -69,14 +73,6 @@ public class CourseModel {
         this.requirements = requirements;
     }
 
-    public int getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(int tagId) {
-        this.tagId = tagId;
-    }
-
 
     public Date getCreatedAt() {
         return createdAt;
@@ -100,5 +96,21 @@ public class CourseModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public ArrayList<VideoModel> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(ArrayList<VideoModel> videos) {
+        this.videos = videos;
     }
 }

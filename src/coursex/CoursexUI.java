@@ -3,6 +3,7 @@ package coursex;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.user.UserModel;
 import presenters.CreateCoursePresenter;
 import presenters.SignInPresenter;
 import presenters.SignUpPresenter;
@@ -18,6 +19,7 @@ public class CoursexUI extends Application {
     public static SignUpView SignUpView = new SignUpView();
     public static SignInView SignInView = new SignInView();
     public static CreateCourseView CreateCourseView;
+    public static UserModel myProfile;
 
     static {
         try {
@@ -34,7 +36,7 @@ public class CoursexUI extends Application {
         SignUpPresenter SignUpPresenter = new SignUpPresenter(SignUpView);
         CreateCoursePresenter CreateCoursePresenter = new CreateCoursePresenter(CreateCourseView);
 
-        window.setTitle("courseX Platform");
+        window.setTitle("CourseX Platform");
         Scene mainScene = new Scene(CreateCourseView, 450, 600);
 
         window.setScene(mainScene);

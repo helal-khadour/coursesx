@@ -2,18 +2,17 @@ package presenters;
 
 import java.util.ArrayList;
 
-import coursex.CoursexUI;
+import javafx.scene.control.Alert;
 import models.user.UserDAO;
 import models.user.UserModel;
 import views.SignUpView;
 
 public class SignUpPresenter {
-    protected CoursexUI coursexUI;
     protected SignUpView signUpView;
     protected UserDAO userDAO;
 
-    public SignUpPresenter(SignUpView SignUpView) {
-        this.signUpView = SignUpView;
+    public SignUpPresenter(SignUpView signUpView) {
+        this.signUpView = signUpView;
         this.userDAO = new UserDAO();
         showSignInView();
         addHandlers();
@@ -30,17 +29,23 @@ public class SignUpPresenter {
                 ArrayList<UserModel> users = userDAO.getData();
                 for (UserModel user : users) {
                     if (userEmail.equals(user.getEmail())) {
-                        // TODO handle the error
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("Email already exists!");
+                        alert.show();
                     }
                 }
 
                 if (userPassword.equals(userConfirmPassword)) {
                     this.userDAO.add(new UserModel(userName, userEmail, userPassword, false));
                 } else {
-                    // TODO handle the error
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Password and confirm password don't match!");
+                    alert.show();
                 }
             } else {
-                // TODO handle the error
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Unexpected Error!");
+                alert.show();
             }
 
 

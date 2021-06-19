@@ -27,8 +27,8 @@ public class CreateCourseView extends HBox {
     public TextField topicFld = new TextField();
     public Button contentsBtn = new Button("Add Contents");
     public FileChooser contentChooser = new FileChooser();
-    public Button bannerBtn = new Button("Add Banner");
     public FileChooser bannerChooser = new FileChooser();
+    public Button bannerBtn = new Button("Add Banner");
 
     public Button createBtn = new Button("Create Course");
 
@@ -39,7 +39,6 @@ public class CreateCourseView extends HBox {
 
     //Setting the image view
     ImageView imageView = new ImageView(image);
-
 
     //Constructor
     public CreateCourseView() throws FileNotFoundException {
@@ -54,7 +53,8 @@ public class CreateCourseView extends HBox {
         formSection();
         imageSection();
     }
-    private void formSection(){
+
+    private void formSection() {
         this.formBox.setAlignment(Pos.CENTER);
         this.formBox.getChildren().add(this.createLb);
         this.createLb.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 60));
@@ -63,43 +63,44 @@ public class CreateCourseView extends HBox {
 
         this.formBox.getChildren().add(this.titleFld);
         this.titleFld.setPromptText("Title");
-        this.formBox.setMargin(this.titleFld,new Insets(40, 0, 20, 0));
+        this.formBox.setMargin(this.titleFld, new Insets(40, 0, 20, 0));
         this.titleFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.titleFld.setStyle(
                 "-fx-text-inner-color: white;" +
                         "-fx-control-inner-background: #1F1F21; " +
                         "-fx-background-color: -fx-control-inner-background;" +
-                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
+                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;");
 
         this.formBox.getChildren().add(this.descriptionFld);
         this.descriptionFld.setPromptText("Description");
-        this.formBox.setMargin(this.descriptionFld,new Insets(0, 0, 20, 0));
+        this.formBox.setMargin(this.descriptionFld, new Insets(0, 0, 20, 0));
         this.descriptionFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.descriptionFld.setStyle(
                 "-fx-text-inner-color: white;" +
                         "-fx-control-inner-background: #1F1F21; " +
                         "-fx-background-color: -fx-control-inner-background;" +
-                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
+                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;");
 
         this.formBox.getChildren().add(this.requirementsFld);
         this.requirementsFld.setPromptText("Requirements");
-        this.formBox.setMargin(this.requirementsFld,new Insets(0, 0, 20, 0));
+        this.formBox.setMargin(this.requirementsFld, new Insets(0, 0, 20, 0));
         this.requirementsFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.requirementsFld.setStyle(
                 "-fx-text-inner-color: white;" +
                         "-fx-control-inner-background: #1F1F21; " +
                         "-fx-background-color: -fx-control-inner-background;" +
-                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
+                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;");
 
         this.formBox.getChildren().add(this.topicFld);
-        this.topicFld.setPromptText("topic");
-        this.formBox.setMargin(this.topicFld,new Insets(0, 0, 20, 0));
+        this.topicFld.setPromptText("Topic");
+        this.formBox.setMargin(this.topicFld, new Insets(0, 0, 20, 0));
         this.topicFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.topicFld.setStyle(
                 "-fx-text-inner-color: white;" +
                         "-fx-control-inner-background: #1F1F21; " +
                         "-fx-background-color: -fx-control-inner-background;" +
-                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
+                        " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;");
+
 
         this.formBox.getChildren().add(this.contentsBtn);
         this.contentsBtn.setStyle("-fx-background-color: #2D3134; -fx-min-height: 16; -fx-text-fill: #0787F9;");
@@ -119,7 +120,8 @@ public class CreateCourseView extends HBox {
 
 
     }
-    private void imageSection(){
+
+    private void imageSection() {
         this.imageBox.setAlignment(Pos.CENTER);
         this.imageBox.getChildren().add(this.imageView);
         this.imageView.setFitHeight(550);

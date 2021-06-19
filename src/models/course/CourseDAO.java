@@ -34,7 +34,7 @@ public class CourseDAO {
                 temp.setBanner(result.getString(4));
                 temp.setCreatedAt(result.getDate(5));
                 temp.setRequirements(result.getString(6));
-                temp.setTagId(result.getInt(7));
+                temp.setTopic(result.getString(7));
                 temp.setInstructorUserId(result.getInt(8));
                 this.data.add(temp);
             } while (result.next());
@@ -60,7 +60,7 @@ public class CourseDAO {
             temp.setBanner(result.getString(4));
             temp.setCreatedAt(result.getDate(5));
             temp.setRequirements(result.getString(6));
-            temp.setTagId(result.getInt(7));
+            temp.setTopic(result.getString(7));
             temp.setInstructorUserId(result.getInt(8));
             this.data.add(temp);
             return true;
@@ -72,20 +72,32 @@ public class CourseDAO {
 
     public void add(CourseModel course) {
         this.data.clear();
-        String query = "insert into courses (title, description, banner, requirements, tag_id, instructor_user_id) values( '" +
+        String query = "insert into courses (title, description, banner, requirements, topic, instructor_user_id) values( '" +
                 course.getTitle() + "','" + course.getDescription() + "','"
-                + course.getBanner() + "','" + course.getRequirements() + "',"
-                + course.getTagId() + "," + course.getInstructorUserId() + ")";
+                + course.getBanner() + "','" + course.getRequirements() + "','"
+                + course.getTopic() + "'," + course.getInstructorUserId() + ")";
         int rows = BasicDB.manipulate(query);
-        this.data.add(course);
+
+        String retrieveQuery = "select * from courses order by id desc limit 1";
+        ResultSet result = BasicDB.retrieve(retrieveQuery);
+        CourseModel temp = new CourseModel();
+        try {
+            if (result.next()) {
+                temp.setId(result.getInt(1));
+                temp.setTitle(result.getString(2));
+                temp.setDescription(result.getString(3));
+                temp.setBanner(result.getString(4));
+                temp.setCreatedAt(result.getDate(5));
+                temp.setRequirements(result.getString(6));
+                temp.setTopic(result.getString(7));
+                temp.setInstructorUserId(result.getInt(8));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        this.data.add(temp);
     }
 
-    //    public void update(String name, int newCopies) {
-    //        //Form the query
-    //        String query = "update books set copies = " + newCopies + " where name= '" + name + "'";
-    //        //Execute the query
-    //        int rows = BasicDB.manipulate(query);
-    //    }
 
     public void delete(int id) {
         String query = "delete from courses where id= '" + id + "'";
