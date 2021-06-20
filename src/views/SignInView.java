@@ -20,7 +20,7 @@ public class SignInView extends VBox {
     public TextField emailFld=new TextField();
     public PasswordField passwordFld=new PasswordField();
     public Button loginBtn=new Button("SignIn");
-    public Text emailValidate = new Text("please enter a valid email address");
+    public Text emailValidate = new Text("pleaslamp deske enter a valid email address");
     public Text passwordValidate = new Text("password must be more than 8 characters");
 
     public VBox filed = new VBox();

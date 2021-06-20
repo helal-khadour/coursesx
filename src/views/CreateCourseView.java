@@ -16,14 +16,19 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class CreateCourseView extends HBox {
     public Text createLb = new Text("Create New Course");
+    public Text titleLb = new Text("How about a working title?");
     public TextField titleFld = new TextField();
+    public Text descriptionLb = new Text("What is the description of the course?");
     public TextField descriptionFld = new TextField();
+    public Text requirementsLb = new Text("Are there any course requirements?");
     public TextField requirementsFld = new TextField();
+    public Text topicLb = new Text("What tags best fits the knowledge you'll share?");
     public TextField topicFld = new TextField();
     public Button contentsBtn = new Button("Add Contents");
     public FileChooser contentChooser = new FileChooser();
@@ -51,19 +56,27 @@ public class CreateCourseView extends HBox {
         this.setStyle("-fx-background-color: #2D3134");
         this.getChildren().add(this.formBox);
         this.getChildren().add(this.imageBox);
+        this.setMargin(this.formBox,new Insets(40, 100, 20, 100));
         formSection();
         imageSection();
     }
     private void formSection(){
-        this.formBox.setAlignment(Pos.CENTER);
+        this.formBox.setPrefWidth(700);
+        this.formBox.setAlignment(Pos.CENTER_LEFT);
+
         this.formBox.getChildren().add(this.createLb);
         this.createLb.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 60));
         this.createLb.setFill(Color.WHITE);
 
+        this.formBox.getChildren().add(this.titleLb);
+        this.titleLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
+        this.titleLb.setFill(Color.WHITE);
+        this.formBox.setMargin(this.titleLb,new Insets(50, 250, 0, 0));
+
 
         this.formBox.getChildren().add(this.titleFld);
-        this.titleFld.setPromptText("Title");
-        this.formBox.setMargin(this.titleFld,new Insets(40, 0, 20, 0));
+        this.titleFld.setPromptText("Title of Course");
+        this.formBox.setMargin(this.titleFld,new Insets(10, 250, 20, 0));
         this.titleFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.titleFld.setStyle(
                 "-fx-text-inner-color: white;" +
@@ -71,9 +84,13 @@ public class CreateCourseView extends HBox {
                         "-fx-background-color: -fx-control-inner-background;" +
                         " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
 
+        this.formBox.getChildren().add(this.descriptionLb);
+        this.descriptionLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
+        this.descriptionLb.setFill(Color.WHITE);
+
         this.formBox.getChildren().add(this.descriptionFld);
         this.descriptionFld.setPromptText("Description");
-        this.formBox.setMargin(this.descriptionFld,new Insets(0, 0, 20, 0));
+        this.formBox.setMargin(this.descriptionFld,new Insets(10, 250, 20, 0));
         this.descriptionFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.descriptionFld.setStyle(
                 "-fx-text-inner-color: white;" +
@@ -81,9 +98,15 @@ public class CreateCourseView extends HBox {
                         "-fx-background-color: -fx-control-inner-background;" +
                         " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
 
+        this.formBox.getChildren().add(this.requirementsLb);
+        this.requirementsLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
+        this.requirementsLb.setFill(Color.WHITE);
+
+
+
         this.formBox.getChildren().add(this.requirementsFld);
         this.requirementsFld.setPromptText("Requirements");
-        this.formBox.setMargin(this.requirementsFld,new Insets(0, 0, 20, 0));
+        this.formBox.setMargin(this.requirementsFld,new Insets(10, 250, 20, 0));
         this.requirementsFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.requirementsFld.setStyle(
                 "-fx-text-inner-color: white;" +
@@ -91,9 +114,14 @@ public class CreateCourseView extends HBox {
                         "-fx-background-color: -fx-control-inner-background;" +
                         " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
 
+
+        this.formBox.getChildren().add(this.topicLb);
+        this.topicLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
+        this.topicLb.setFill(Color.WHITE);
+
         this.formBox.getChildren().add(this.topicFld);
         this.topicFld.setPromptText("topic");
-        this.formBox.setMargin(this.topicFld,new Insets(0, 0, 20, 0));
+        this.formBox.setMargin(this.topicFld,new Insets(10, 250, 20, 0));
         this.topicFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.topicFld.setStyle(
                 "-fx-text-inner-color: white;" +
@@ -120,9 +148,11 @@ public class CreateCourseView extends HBox {
 
     }
     private void imageSection(){
-        this.imageBox.setAlignment(Pos.CENTER);
+        this.formBox.setPrefWidth(700);
+        this.imageBox.setAlignment(Pos.CENTER_RIGHT);
         this.imageBox.getChildren().add(this.imageView);
         this.imageView.setFitHeight(550);
+
         this.imageView.setFitWidth(534);
 
     }
