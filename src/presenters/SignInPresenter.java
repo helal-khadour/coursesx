@@ -1,17 +1,19 @@
 package presenters;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 
 import coursex.CoursexUI;
 import javafx.scene.control.Alert;
 import models.user.UserDAO;
+import views.AllCoursesView;
+import views.CreateCourseView;
 import views.SignInView;
 import utils.HelperFunctions;
+import views.SignUpView;
 
 
 public class SignInPresenter {
     protected SignInView signInView;
-    protected CoursexUI coursexUI;
     protected UserDAO userDAO;
 
 
@@ -30,22 +32,29 @@ public class SignInPresenter {
             String userPassword = this.signInView.passwordFld.getText();
 
             if (userDAO.retrieveUser(userEmail, userPassword)) {
-                // TODO handle successful login
                 System.out.println("Welcome back, " + userEmail);
                 CoursexUI.myProfile = userDAO.getData().get(0);
+
+                AllCoursesView allCoursesView;
+                allCoursesView = new AllCoursesView();
+                AllCoursesPresenter allCoursesPresenter = new AllCoursesPresenter(allCoursesView);
+                CoursexUI.window.getScene().setRoot(allCoursesView);
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Email or Password not correct!");
                 alert.show();
             }
-
         });
 
     }
 
     private void showSignUpView() {
+        SignUpView signUpView = new SignUpView();
+        SignUpPresenter signUpPresenter = new SignUpPresenter(signUpView);
+
         this.signInView.signUpBtn.setOnAction(action -> {
-            coursex.CoursexUI.window.getScene().setRoot(coursex.CoursexUI.SignUpView);
+            coursex.CoursexUI.window.getScene().setRoot(signUpView);
         });
     }
 

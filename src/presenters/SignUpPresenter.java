@@ -25,7 +25,9 @@ public class SignUpPresenter {
             String userPassword = this.signUpView.passwordFld.getText();
             String userConfirmPassword = this.signUpView.confirmPasswordFld.getText();
 
-            if (userDAO.retrieveAllUsers()) {
+            boolean ableToRetrieveUsers = userDAO.retrieveAllUsers();
+
+            if (ableToRetrieveUsers || userDAO.getData().isEmpty()) {
                 ArrayList<UserModel> users = userDAO.getData();
                 for (UserModel user : users) {
                     if (userEmail.equals(user.getEmail())) {
@@ -60,7 +62,7 @@ public class SignUpPresenter {
 
     private void showSignInView() {
         this.signUpView.signInBtn.setOnAction(action -> {
-            coursex.CoursexUI.window.getScene().setRoot(coursex.CoursexUI.SignInView);
+            coursex.CoursexUI.window.getScene().setRoot(coursex.CoursexUI.signInView);
         });
     }
 

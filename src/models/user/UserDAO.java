@@ -65,17 +65,11 @@ public class UserDAO {
     public void add(UserModel user) {
         this.data.clear();
         String query = "insert into users (name, email, password, is_instructor) values( '" +
-                user.getName() + "','" + user.getEmail() + "'," + user.getPassword() + "," + user.isInstructor() + ")";
+                user.getName() + "','" + user.getEmail() + "','" + user.getPassword() + "'," + user.isInstructor() + ")";
         int rows = BasicDB.manipulate(query);
         this.data.add(user);
     }
 
-//    public void update(String name, int newCopies) {
-//        //Form the query
-//        String query = "update books set copies = " + newCopies + " where name= '" + name + "'";
-//        //Execute the query
-//        int rows = BasicDB.manipulate(query);
-//    }
 
     public void delete(String name) {
         String query = "delete from users where name= '" + name + "'";

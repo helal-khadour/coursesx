@@ -10,27 +10,39 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import models.course.CourseModel;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class CardComponent extends VBox {
-    public Text title = new Text("The title The title The titleThe titleThe titleThe titleThe titleThe titleThe titleThe titleThe titleThe titleThe titleThe title");
-    public Text topic = new Text("React");
-    public Image image = new Image(new FileInputStream("assets/img/createImg.png"));
-    //Setting the image view
-    ImageView imageView = new ImageView(image);
+    private CourseModel courseModel;
 
-    public CardComponent() throws FileNotFoundException {
+    private final Text title;
+    private final Text topic;
+    private final Image image;
+
+    //Setting the image view
+
+    public CardComponent(CourseModel courseModel) throws FileNotFoundException {
+        this.courseModel = courseModel;
+        this.title = new Text(courseModel.getTitle());
+        this.topic = new Text(courseModel.getTopic());
+        if (!courseModel.getBanner().isEmpty())
+            this.image = new Image(new FileInputStream(courseModel.getBanner()));
+        else
+            this.image = new Image(new FileInputStream("assets/img/createImg.png"));
         attachLayout();
     }
+
     private void attachLayout() {
+        ImageView imageView = new ImageView(image);
         this.setAlignment(Pos.CENTER_LEFT);
         this.setSpacing(5);
         this.setStyle("-fx-background-color: white");
-        this.getChildren().add(this.imageView);
-        this.imageView.setFitHeight(200);
-        this.imageView.setFitWidth(300);
+        this.getChildren().add(imageView);
+        imageView.setFitHeight(200);
+        imageView.setFitWidth(300);
 
         this.getChildren().add(this.title);
         this.title.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 16));
