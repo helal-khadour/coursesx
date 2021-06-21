@@ -5,8 +5,7 @@ import java.io.FileNotFoundException;
 import coursex.CoursexUI;
 import javafx.scene.control.Alert;
 import models.user.UserDAO;
-import views.AllCoursesView;
-import views.CreateCourseView;
+import views.CoursesView;
 import views.SignInView;
 import utils.HelperFunctions;
 import views.SignUpView;
@@ -34,11 +33,13 @@ public class SignInPresenter {
             if (userDAO.retrieveUser(userEmail, userPassword)) {
                 System.out.println("Welcome back, " + userEmail);
                 CoursexUI.myProfile = userDAO.getData().get(0);
-
-                AllCoursesView allCoursesView;
-                allCoursesView = new AllCoursesView();
-                AllCoursesPresenter allCoursesPresenter = new AllCoursesPresenter(allCoursesView);
-                CoursexUI.window.getScene().setRoot(allCoursesView);
+                try {
+                    CoursesView coursesView = new CoursesView();
+                    CoursesPresenter coursesPresenter = new CoursesPresenter(coursesView);
+                    CoursexUI.window.getScene().setRoot(coursesView);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
 
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

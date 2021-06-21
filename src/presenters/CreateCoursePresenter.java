@@ -41,7 +41,7 @@ public class CreateCoursePresenter {
             String requirements = this.createCourseView.requirementsFld.getText();
             String topic = this.createCourseView.topicFld.getText();
 
-            this.courseDAO.add(new CourseModel(title, description, "", requirements, topic, 1));
+            this.courseDAO.add(new CourseModel(title, description, "", requirements, topic, CoursexUI.myProfile.getId()));
             int courseId = this.courseDAO.getData().get(0).getId();
 
             if (!contentFiles.isEmpty()) {

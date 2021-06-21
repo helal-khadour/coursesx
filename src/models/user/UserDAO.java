@@ -65,7 +65,7 @@ public class UserDAO {
     public void add(UserModel user) {
         this.data.clear();
         String query = "insert into users (name, email, password, is_instructor) values( '" +
-                user.getName() + "','" + user.getEmail() + "','" + user.getPassword() + "'," + user.isInstructor() + ")";
+                user.getName() + "','" + user.getEmail() + "','" + user.getPassword() + "'," + user.isInstructorDatabase() + ")";
         int rows = BasicDB.manipulate(query);
         this.data.add(user);
     }

@@ -1,4 +1,5 @@
 package views;
+
 import components.CardComponent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,15 +19,15 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class CourseView extends ScrollPane{
+public class CoursesView extends ScrollPane {
     StackPane navBar = new StackPane();
     VBox imgSection = new VBox();
-    TilePane coursesGrid = new TilePane();
-    VBox body = new VBox();
+    public TilePane coursesGrid = new TilePane();
+    public VBox body = new VBox();
     CardComponent card;
-    Text userName = new Text("Milad Awad");
+    public Text userName = new Text("User");
     Text logo = new Text("CoursesX");
-    Button createCourse = new Button("Create Course");
+    public Button createCourse = new Button("Create Course");
 
     public Image image = new Image(new FileInputStream("assets/img/coursesBG.png"));
     //Setting the image view
@@ -35,9 +36,10 @@ public class CourseView extends ScrollPane{
     //Setting the image view
     ImageView avatarView = new ImageView(avatar);
 
-    public CourseView() throws FileNotFoundException {
+    public CoursesView() throws FileNotFoundException {
         attachLayout();
     }
+
     public void attachLayout() throws FileNotFoundException {
         this.setStyle("-fx-background-color: #2D3134");
 
@@ -52,14 +54,15 @@ public class CourseView extends ScrollPane{
 
     }
 
-    private void viewImage() throws FileNotFoundException{
+    private void viewImage() throws FileNotFoundException {
         this.imgSection.getChildren().add(this.imageView);
         this.imageView.setFitHeight(408);
         this.imageView.setFitWidth(1520);
     }
-    private void viewNavBar() throws FileNotFoundException{
+
+    private void viewNavBar() throws FileNotFoundException {
         this.navBar.setAlignment(Pos.CENTER_LEFT);
-        this.navBar.setPadding(new Insets(8,60,8,60));
+        this.navBar.setPadding(new Insets(8, 60, 8, 60));
         this.navBar.getChildren().add(this.logo);
         this.navBar.getChildren().add(this.createCourse);
 

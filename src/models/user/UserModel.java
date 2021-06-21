@@ -49,9 +49,13 @@ public class UserModel {
         this.name = name;
     }
 
-    public String isInstructor() {
+    public String isInstructorDatabase() {
         if (isInstructor) return "TRUE";
         else return "FALSE";
+    }
+
+    public boolean isInstructor() {
+        return isInstructor;
     }
 
     public void setInstructor(boolean instructor) {

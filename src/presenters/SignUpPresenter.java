@@ -1,10 +1,13 @@
 package presenters;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import coursex.CoursexUI;
 import javafx.scene.control.Alert;
 import models.user.UserDAO;
 import models.user.UserModel;
+import views.CoursesView;
 import views.SignUpView;
 
 public class SignUpPresenter {
@@ -39,6 +42,14 @@ public class SignUpPresenter {
 
                 if (userPassword.equals(userConfirmPassword)) {
                     this.userDAO.add(new UserModel(userName, userEmail, userPassword, false));
+                    CoursexUI.myProfile = this.userDAO.getData().get(0);
+                    try {
+                        CoursesView coursesView = new CoursesView();
+                        CoursesPresenter coursesPresenter = new CoursesPresenter(coursesView);
+                        CoursexUI.window.getScene().setRoot(coursesView);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("Password and confirm password don't match!");
