@@ -18,30 +18,38 @@ import java.io.FileNotFoundException;
 public class CoursexUI extends Application {
 
     public static Stage window;
-    public static UserModel myProfile;
+    public static SignUpView SignUpView = new SignUpView();
+    public static SignInView SignInView = new SignInView();
+    public static CreateCourseView CreateCourseView;
+    public static CourseView view;
+    public static CardComponent card;
 
-//    public static SignUpView signUpView = new SignUpView();
 
-    public static SignInView signInView = new SignInView();
-
-//    public static CreateCourseView createCourseView;
-//    public static AllCoursesView allCoursesView;
-
-//    static {
-//        try {
-//            createCourseView = new CreateCourseView();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    static {
+        try {
+            card = new CardComponent();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            view = new CourseView();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            CreateCourseView = new CreateCourseView();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void start(Stage primaryStage) throws FileNotFoundException {
         window = primaryStage;
 
-        SignInPresenter SignInPresenter = new SignInPresenter(signInView);
-//        SignUpPresenter SignUpPresenter = new SignUpPresenter(signUpView);
-//        CreateCoursePresenter CreateCoursePresenter = new CreateCoursePresenter(createCourseView);
-//        AllCoursesPresenter allCoursesPresenter = new AllCoursesPresenter(allCoursesView);
+        SignInPresenter SignInPresenter = new SignInPresenter(SignInView);
+        SignUpPresenter SignUpPresenter = new SignUpPresenter(SignUpView);
+        CreateCoursePresenter CreateCoursePresenter = new CreateCoursePresenter(CreateCourseView);
+        ViewPresenter c = new ViewPresenter(view);
 
 
         window.setTitle("CourseX Platform");
