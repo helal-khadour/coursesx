@@ -18,7 +18,7 @@ public class CoursexUI extends Application {
     public static SignUpView SignUpView = new SignUpView();
     public static SignInView SignInView = new SignInView();
     public static CreateCourseView CreateCourseView;
-    public static AllCoursesView view;
+    public static CourseView view;
     public static CardComponent card;
 
 
@@ -29,7 +29,7 @@ public class CoursexUI extends Application {
             e.printStackTrace();
         }
         try {
-            view = new AllCoursesView();
+            view = new CourseView();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -40,12 +40,14 @@ public class CoursexUI extends Application {
         }
     }
 
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException {
         window = primaryStage;
 
         SignInPresenter SignInPresenter = new SignInPresenter(SignInView);
         SignUpPresenter SignUpPresenter = new SignUpPresenter(SignUpView);
         CreateCoursePresenter CreateCoursePresenter = new CreateCoursePresenter(CreateCourseView);
+        ViewPresenter c = new ViewPresenter(view);
+
 
         window.setTitle("courseX Platform");
         Scene mainScene = new Scene(view, 1000, 1000);
