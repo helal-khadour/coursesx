@@ -6,7 +6,6 @@ import models.user.UserDAO;
 import models.user.UserModel;
 import views.CoursesView;
 import views.SignUpInstructorView;
-import views.SignUpView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

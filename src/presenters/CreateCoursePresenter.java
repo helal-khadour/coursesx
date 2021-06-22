@@ -1,7 +1,5 @@
 package presenters;
 
-
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -45,6 +43,11 @@ public class CreateCoursePresenter {
             String description = this.createCourseView.descriptionFld.getText();
             String requirements = this.createCourseView.requirementsFld.getText();
             String topic = this.createCourseView.topicFld.getText();
+
+            System.out.println("**********************************************");
+            System.out.println(CoursexUI.myProfile.getId());
+            System.out.println("**********************************************");
+
 
             this.courseDAO.add(new CourseModel(title, description, "", requirements, topic, CoursexUI.myProfile.getId()));
             int courseId = this.courseDAO.getData().get(0).getId();
@@ -96,21 +99,17 @@ public class CreateCoursePresenter {
             File bannerFile = createCourseView.contentChooser.showOpenDialog(CoursexUI.window);
         });
     }
-    private void back(){
+
+    private void back() {
         this.createCourseView.backBtn.setOnAction(e -> {
-            CoursesView coursesView = null;
             try {
-                coursesView = new CoursesView();
-            } catch (FileNotFoundException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            }
-            try {
+                CoursesView coursesView = new CoursesView();
                 CoursesPresenter coursesPresenter = new CoursesPresenter(coursesView);
+                CoursexUI.window.getScene().setRoot(coursesView);
+                CoursexUI.window.setMaximized(true);
             } catch (FileNotFoundException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }
-            CoursexUI.window.getScene().setRoot(coursesView);
-            CoursexUI.window.setMaximized(true);
         });
     }
 

@@ -50,6 +50,29 @@ public class UserDAO {
             if (!result.next())
                 return false;
             UserModel temp = new UserModel();
+            temp.setId(result.getInt(1));
+            temp.setName(result.getString(2));
+            temp.setEmail(result.getString(4));
+            temp.setPassword(result.getString(5));
+            temp.setInstructor(result.getBoolean(3));
+            this.data.add(temp);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean retrieveUserById(int id) {
+        this.data.clear();
+        String query = "select * from users where id = '" + id + "'";
+        ResultSet result = BasicDB.retrieve(query);
+
+        try {
+            if (!result.next())
+                return false;
+            UserModel temp = new UserModel();
+            temp.setId(result.getInt(1));
             temp.setName(result.getString(2));
             temp.setEmail(result.getString(4));
             temp.setPassword(result.getString(5));

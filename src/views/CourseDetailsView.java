@@ -29,20 +29,16 @@ public class CourseDetailsView extends ScrollPane {
     public Text descriptionContent = new Text("descriptionContent");
     public Text requirementsLb = new Text("requirements");
     public Text requirementsContent = new Text("requirementsContent");
-    public Text TopicContent = new Text("React");
+    public Text topicContent = new Text("React");
     public Text createdBy = new Text("Created By");
     public Text instructorName = new Text("instructorName ");
     public Text allVideosLb = new Text("All Videos");
-    public HBox video = new HBox();
-    public Text videoName = new Text("video Name");
+    public VBox videos = new VBox();
     public Button editCourseBtn = new Button("Edit Course");
     public Button removeCourseBtn = new Button("Remove Course");
     public HBox buttonGroup = new HBox();
-    Image iconVideo = new Image(new FileInputStream("assets/img/video.png"));
-    //Setting the image view
-    ImageView iconVideoView = new ImageView(iconVideo);
+    public Button backBtn = new Button("Back");
     Image image = new Image(new FileInputStream("assets/img/createImg.png"));
-    //Setting the image view
     ImageView imageView = new ImageView(image);
 
     public CourseDetailsView() throws FileNotFoundException {
@@ -66,17 +62,21 @@ public class CourseDetailsView extends ScrollPane {
         this.imageView.setFitHeight(350);
         this.imageView.setFitWidth(334);
         infoSection();
-
     }
+
     private void infoSection() {
+        this.infoBox.getChildren().add(this.backBtn);
+        this.backBtn.setStyle("-fx-background-color: #2D3134; -fx-min-height: 16; -fx-text-fill: #0787F9; -fx-border-radius: 3;-fx-border-color: #0787F9;");
+        this.backBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.backBtn.setCursor(Cursor.HAND);
         this.infoBox.getChildren().add(this.titleContent);
         this.infoBox.setSpacing(10);
         this.infoBox.setAlignment(Pos.CENTER_LEFT);
         this.titleContent.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 60));
         this.titleContent.setFill(Color.WHITE);
-        this.infoBox.getChildren().add(this.TopicContent);
-        this.TopicContent.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 20));
-        this.TopicContent.setFill(Color.WHITE);
+        this.infoBox.getChildren().add(this.topicContent);
+        this.topicContent.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 20));
+        this.topicContent.setFill(Color.WHITE);
         this.infoBox.getChildren().add(this.createdBy);
         this.createdBy.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         this.createdBy.setFill(Color.WHITE);
@@ -114,20 +114,6 @@ public class CourseDetailsView extends ScrollPane {
         this.bodyBox.getChildren().add(this.allVideosLb);
         this.allVideosLb.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 34));
         this.allVideosLb.setFill(Color.BLACK);
-        this.bodyBox.getChildren().add(this.video);
-        videoSection();
-    }
-    private void videoSection(){
-        this.video.setStyle("-fx-background-color: white");
-        this.video.setPadding(new Insets(10));
-        this.video.setAlignment(Pos.CENTER_LEFT);
-//        this.video.setStyle("-fx-background-color: #2D3134; -fx-min-height: 50; -fx-min-width: 200; -fx-border-color: white;" +
-//                " -fx-text-fill: white; -fx-border-radius: 3;");
-        this.video.getChildren().add(this.iconVideoView);
-        this.video.getChildren().add(this.videoName);
-        this.videoName.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        this.videoName.setFill(Color.BLACK);
-        this.iconVideoView.setFitHeight(30);
-        this.iconVideoView.setFitWidth(30);
+        this.bodyBox.getChildren().add(this.videos);
     }
 }

@@ -16,16 +16,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class CardComponent extends VBox {
-    private CourseModel courseModel;
-
     private final Text title;
     private final Text topic;
     private final Image image;
 
-    //Setting the image view
-
     public CardComponent(CourseModel courseModel) throws FileNotFoundException {
-        this.courseModel = courseModel;
         this.title = new Text(courseModel.getTitle());
         this.topic = new Text(courseModel.getTopic());
         if (!courseModel.getBanner().isEmpty())
@@ -49,7 +44,7 @@ public class CardComponent extends VBox {
         this.title.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 16));
         this.title.setFill(Color.WHITE);
         this.title.setWrappingWidth(290);
-        this.setMargin(this.title, new Insets(0,5,0,5));
+        this.setMargin(this.title, new Insets(0, 5, 0, 5));
 
         this.getChildren().add(this.topic);
         this.topic.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 14));

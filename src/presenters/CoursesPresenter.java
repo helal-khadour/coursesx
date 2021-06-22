@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import models.course.CourseDAO;
 import models.course.CourseModel;
+import views.CourseDetailsView;
 import views.CoursesView;
 import views.CreateCourseView;
 
@@ -33,6 +34,15 @@ public class CoursesPresenter {
         this.coursesView.coursesGrid.setMaxWidth(1400);
         for (CourseModel course : courses) {
             this.card = new CardComponent(course);
+            this.card.setOnMouseClicked(action -> {
+                try {
+                    CourseDetailsView courseDetailsView = new CourseDetailsView();
+                    CourseDetailsPresenter courseDetailsPresenter = new CourseDetailsPresenter(courseDetailsView, course);
+                    CoursexUI.window.getScene().setRoot(courseDetailsView);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            });
             this.coursesView.coursesGrid.getChildren().add(card);
             this.coursesView.coursesGrid.setMargin(card, new Insets(10));
         }

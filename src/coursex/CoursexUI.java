@@ -18,15 +18,7 @@ public class CoursexUI extends Application {
 
     public static Stage window;
     public static SignInView signInView = new SignInView();
-    public static CourseDetailsView view;
 
-    static {
-        try {
-            view = new CourseDetailsView();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static UserModel myProfile;
 
@@ -36,7 +28,7 @@ public class CoursexUI extends Application {
         SignInPresenter SignInPresenter = new SignInPresenter(signInView);
 
         window.setTitle("CourseX Platform");
-        Scene mainScene = new Scene(view, 1450, 700);
+        Scene mainScene = new Scene(signInView, 1450, 700);
 
         window.setScene(mainScene);
         window.setResizable(false);

@@ -18,9 +18,9 @@ public class VideoDAO {
         return this.data;
     }
 
-    public boolean retrieveAllCourses() {
+    public boolean retrieveAllCourseVideos(int courseId) {
         this.data.clear();
-        String query = "select * from videos";
+        String query = "select * from videos where course_id = " + courseId;
         ResultSet result = BasicDB.retrieve(query);
 
         try {
@@ -41,7 +41,7 @@ public class VideoDAO {
         return false;
     }
 
-    public boolean retrieveCourse(int id) {
+    public boolean retrieveVideo(int id) {
         this.data.clear();
         String query = "select * from videos where id = '" + id + "'";
         ResultSet result = BasicDB.retrieve(query);
