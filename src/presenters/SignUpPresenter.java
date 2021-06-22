@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import models.user.UserDAO;
 import models.user.UserModel;
 import views.CoursesView;
+import views.SignUpInstructorView;
 import views.SignUpView;
 
 public class SignUpPresenter {
@@ -18,6 +19,7 @@ public class SignUpPresenter {
         this.signUpView = signUpView;
         this.userDAO = new UserDAO();
         showSignInView();
+        showSignUpInstructorView();
         addHandlers();
     }
 
@@ -47,6 +49,7 @@ public class SignUpPresenter {
                         CoursesView coursesView = new CoursesView();
                         CoursesPresenter coursesPresenter = new CoursesPresenter(coursesView);
                         CoursexUI.window.getScene().setRoot(coursesView);
+                        CoursexUI.window.setMaximized(true);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -75,6 +78,14 @@ public class SignUpPresenter {
         this.signUpView.signInBtn.setOnAction(action -> {
             coursex.CoursexUI.window.getScene().setRoot(coursex.CoursexUI.signInView);
         });
-    }
 
+    }
+    private void showSignUpInstructorView() {
+        this.signUpView.instructorBtn.setOnAction(action -> {
+            SignUpInstructorView signUpInstructorView = new SignUpInstructorView();
+            SignUpInstructorPresenter signUpInstructorPresenter = new SignUpInstructorPresenter(signUpInstructorView );
+            CoursexUI.window.getScene().setRoot(signUpInstructorView);
+        });
+
+    }
 }

@@ -37,6 +37,7 @@ public class SignInPresenter {
                     CoursesView coursesView = new CoursesView();
                     CoursesPresenter coursesPresenter = new CoursesPresenter(coursesView);
                     CoursexUI.window.getScene().setRoot(coursesView);
+                    CoursexUI.window.setMaximized(true);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

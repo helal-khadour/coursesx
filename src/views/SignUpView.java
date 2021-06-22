@@ -1,7 +1,9 @@
 package views;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.HBox;
@@ -22,13 +24,14 @@ public class SignUpView extends VBox {
     public PasswordField passwordFld = new PasswordField();
     public PasswordField confirmPasswordFld = new PasswordField();
     public Button signUpBtn = new Button("SignUp");
+    public Separator separator = new Separator(Orientation.HORIZONTAL);
 
 
     public HBox signInBox = new HBox();
     public Text accountLb = new Text("Already have an account?");
     public Button signInBtn = new Button("Sign In");
 
-    public HBox instructorSignUpBox = new HBox();
+    public VBox instructorSignUpBox = new VBox();
     public Text instructorLb = new Text("Or");
     public Button instructorBtn = new Button("Sign Up as an Instructor");
 
@@ -100,7 +103,8 @@ public class SignUpView extends VBox {
 
         signInBox();
         this.getChildren().add(this.signInBox);
-
+        this.getChildren().add(this.separator);
+        this.setMargin(this.separator, new Insets(30, 60, 0, 60));
         instructorSingUpBox();
         this.getChildren().add(this.instructorSignUpBox);
 
@@ -108,7 +112,7 @@ public class SignUpView extends VBox {
 
     private void signInBox() {
         signInBox.setAlignment(Pos.CENTER);
-        this.setMargin(this.signInBox, new Insets(10, 60, 20, 60));
+        this.setMargin(this.signInBox, new Insets(20, 60, 0, 60));
         this.signInBox.setAlignment(Pos.CENTER);
         this.signInBox.getChildren().add(this.accountLb);
         this.accountLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
@@ -120,14 +124,16 @@ public class SignUpView extends VBox {
     }
 
     private void instructorSingUpBox() {
-        instructorSignUpBox.setAlignment(Pos.CENTER);
-        this.setMargin(this.instructorSignUpBox, new Insets(10, 60, 20, 60));
+        this.instructorSignUpBox.setAlignment(Pos.CENTER);
+        this.instructorSignUpBox.setPadding(new Insets(10,0,0,0));
+        this.setMargin(this.instructorSignUpBox, new Insets(5, 60, 20, 60));
         this.instructorSignUpBox.setAlignment(Pos.CENTER);
         this.instructorSignUpBox.getChildren().add(this.instructorLb);
         this.instructorLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
         this.instructorLb.setFill(Color.WHITE);
         this.instructorSignUpBox.getChildren().add(this.instructorBtn);
-        this.instructorBtn.setStyle("-fx-background-color: #2D3134; -fx-min-height: 16; -fx-text-fill: #0787F9;");
+        this.instructorSignUpBox.setMargin(this.instructorBtn, new Insets(10, 60, 0, 60));
+        this.instructorBtn.setStyle("-fx-background-color: #0787F9; -fx-min-height: 16; -fx-text-fill: white; -fx-min-width: 250;");
         this.instructorBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.instructorBtn.setCursor(Cursor.HAND);
     }

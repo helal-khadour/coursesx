@@ -34,6 +34,7 @@ public class CreateCourseView extends HBox {
     public FileChooser contentChooser = new FileChooser();
     public FileChooser bannerChooser = new FileChooser();
     public Button bannerBtn = new Button("Add Banner");
+    public Button backBtn = new Button("Back");
 
     public Button createBtn = new Button("Create Course");
 
@@ -62,15 +63,21 @@ public class CreateCourseView extends HBox {
     private void formSection(){
         this.formBox.setPrefWidth(700);
         this.formBox.setAlignment(Pos.CENTER_LEFT);
+        this.formBox.getChildren().add(this.backBtn);
+        this.backBtn.setStyle("-fx-background-color: #2D3134; -fx-min-height: 16; -fx-text-fill: #0787F9; -fx-border-radius: 3;-fx-border-color: #0787F9;");
+        this.backBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.backBtn.setCursor(Cursor.HAND);
+
 
         this.formBox.getChildren().add(this.createLb);
         this.createLb.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 60));
         this.createLb.setFill(Color.WHITE);
+        this.formBox.setMargin(this.createLb,new Insets(20, 250, 0, 0));
 
         this.formBox.getChildren().add(this.titleLb);
         this.titleLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
         this.titleLb.setFill(Color.WHITE);
-        this.formBox.setMargin(this.titleLb,new Insets(50, 250, 0, 0));
+        this.formBox.setMargin(this.titleLb,new Insets(80, 250, 0, 0));
 
 
         this.formBox.getChildren().add(this.titleFld);
@@ -120,7 +127,7 @@ public class CreateCourseView extends HBox {
 
         this.formBox.getChildren().add(this.topicFld);
         this.topicFld.setPromptText("topic");
-        this.formBox.setMargin(this.topicFld,new Insets(10, 250, 20, 0));
+        this.formBox.setMargin(this.topicFld,new Insets(10, 250, 10, 0));
         this.topicFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.topicFld.setStyle(
                 "-fx-text-inner-color: white;" +
@@ -139,6 +146,7 @@ public class CreateCourseView extends HBox {
         this.bannerBtn.setStyle("-fx-background-color: #2D3134; -fx-min-height: 16; -fx-text-fill: #0787F9;");
         this.bannerBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.bannerBtn.setCursor(Cursor.HAND);
+        this.formBox.setMargin(this.bannerBtn,new Insets(10, 0, 10, 0));
 
         this.formBox.getChildren().add(this.createBtn);
         this.createBtn.setStyle("-fx-background-color: white; -fx-min-height: 40; -fx-min-width: 150;");
@@ -148,11 +156,11 @@ public class CreateCourseView extends HBox {
 
     }
     private void imageSection(){
-        this.formBox.setPrefWidth(700);
+
         this.imageBox.setAlignment(Pos.CENTER_RIGHT);
+        this.imageBox.setMargin(this.imageView,new Insets(0, 140, 0, 0));
         this.imageBox.getChildren().add(this.imageView);
         this.imageView.setFitHeight(550);
-
         this.imageView.setFitWidth(534);
 
     }

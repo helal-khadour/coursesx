@@ -1,7 +1,9 @@
 package views;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.geometry.Pos;
@@ -18,8 +20,11 @@ public class SignUpInstructorView extends VBox {
     public TextField emailFld=new TextField();
     public PasswordField passwordFld=new PasswordField();
     public PasswordField confirmPasswordFld=new PasswordField();
-    public Button loginBtn=new Button("SignUp");
-    public Button signUpBtn=new Button("Clear");
+    public Button signUpBtn=new Button("SignUp as Instructor");
+
+    public HBox signInBox = new HBox();
+    public Text accountLb = new Text("Already have an account?");
+    public Button signInBtn = new Button("Sign In");
     //Constructor
     public SignUpInstructorView()
     {
@@ -43,7 +48,7 @@ public class SignUpInstructorView extends VBox {
 
         this.getChildren().add(this.userNameFld);
         this.userNameFld.setPromptText("Enter Your UserName");
-        this.setMargin(this.userNameFld,new Insets(20, 60, 10, 60));
+        this.setMargin(this.userNameFld,new Insets(60, 60, 10, 60));
         this.userNameFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.userNameFld.setStyle(
                 "-fx-text-inner-color: white;" +
@@ -83,9 +88,24 @@ public class SignUpInstructorView extends VBox {
                         " -fx-min-height: 30; -fx-prompt-text-fill: #87878D;" );
 
 
-        this.getChildren().add(this.loginBtn);
-        loginBtn.setStyle("-fx-background-color: white; -fx-min-height: 40; -fx-min-width: 120;");
-        loginBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.getChildren().add(this.signUpBtn);
+        signUpBtn.setStyle("-fx-background-color: white; -fx-min-height: 40; -fx-min-width: 240;");
+        signUpBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.signUpBtn.setCursor(Cursor.HAND);
+        this.getChildren().add(this.signInBox);
+        signInBox();
 
+    }
+    private void signInBox() {
+        signInBox.setAlignment(Pos.CENTER);
+        this.setMargin(this.signInBox, new Insets(20, 60, 0, 60));
+        this.signInBox.setAlignment(Pos.CENTER);
+        this.signInBox.getChildren().add(this.accountLb);
+        this.accountLb.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
+        this.accountLb.setFill(Color.WHITE);
+        this.signInBox.getChildren().add(this.signInBtn);
+        this.signInBtn.setStyle("-fx-background-color: #2D3134; -fx-min-height: 16; -fx-text-fill: #0787F9;");
+        this.signInBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.signInBtn.setCursor(Cursor.HAND);
     }
 }

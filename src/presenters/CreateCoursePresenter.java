@@ -13,9 +13,11 @@ import models.course.CourseDAO;
 import models.course.CourseModel;
 import models.video.VideoDAO;
 import models.video.VideoModel;
+import views.CoursesView;
 import views.CreateCourseView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class CreateCoursePresenter {
         addHandlers();
         addContents();
         addBanner();
+        back();
     }
 
     private void addHandlers() {
@@ -91,6 +94,23 @@ public class CreateCoursePresenter {
     private void addBanner() {
         this.createCourseView.bannerBtn.setOnAction(e -> {
             File bannerFile = createCourseView.contentChooser.showOpenDialog(CoursexUI.window);
+        });
+    }
+    private void back(){
+        this.createCourseView.backBtn.setOnAction(e -> {
+            CoursesView coursesView = null;
+            try {
+                coursesView = new CoursesView();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+            try {
+                CoursesPresenter coursesPresenter = new CoursesPresenter(coursesView);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+            CoursexUI.window.getScene().setRoot(coursesView);
+            CoursexUI.window.setMaximized(true);
         });
     }
 

@@ -37,21 +37,23 @@ public class CardComponent extends VBox {
 
     private void attachLayout() {
         ImageView imageView = new ImageView(image);
+
         this.setAlignment(Pos.CENTER_LEFT);
         this.setSpacing(5);
-        this.setStyle("-fx-background-color: white");
+        this.setStyle("-fx-background-color:  #2D3134");
         this.getChildren().add(imageView);
         imageView.setFitHeight(200);
         imageView.setFitWidth(300);
 
         this.getChildren().add(this.title);
         this.title.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 16));
-        this.title.setFill(Color.BLACK);
+        this.title.setFill(Color.WHITE);
         this.title.setWrappingWidth(290);
+        this.setMargin(this.title, new Insets(0,5,0,5));
 
         this.getChildren().add(this.topic);
         this.topic.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 14));
-        this.topic.setFill(Color.BLACK);
-        this.setMargin(this.topic, new Insets(0, 0, 50, 0));
+        this.topic.setFill(Color.WHITE);
+        this.setMargin(this.topic, new Insets(0, 5, 10, 5));
     }
 }
