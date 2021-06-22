@@ -94,6 +94,8 @@ public class CourseDetailsPresenter {
 
             this.courseDetailsView.videos.getChildren().add(videoTileComponent);
 
+            this.courseDetailsView.removeCourseBtn.setVisible(CoursexUI.myProfile.getId() == courseModel.getInstructorUserId());
+
             this.courseDetailsView.removeCourseBtn.setOnAction(action -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Are you sure you want to delete the course?");

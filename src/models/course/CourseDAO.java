@@ -75,7 +75,7 @@ public class CourseDAO {
         this.data.clear();
         String query = "insert into courses (title, description, banner, requirements, topic, instructor_user_id) values( '" +
                 course.getTitle() + "','" + course.getDescription() + "','"
-                + course.getBanner() + "','" + course.getRequirements() + "','"
+                + course.getBanner().replace("\\", "\\\\")  + "','" + course.getRequirements() + "','"
                 + course.getTopic() + "'," + course.getInstructorUserId() + ")";
         int rows = BasicDB.manipulate(query);
 

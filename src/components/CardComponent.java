@@ -16,9 +16,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class CardComponent extends VBox {
-    private final Text title;
+    public final Text title;
     private final Text topic;
     private final Image image;
+
 
     public CardComponent(CourseModel courseModel) throws FileNotFoundException {
         this.title = new Text(courseModel.getTitle());

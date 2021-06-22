@@ -25,6 +25,7 @@ public class CreateCoursePresenter {
     protected CourseDAO courseDAO;
     protected VideoDAO videoDAO;
     private List<File> contentFiles;
+    private File bannerFile;
 
     public CreateCoursePresenter(CreateCourseView createCourseView) {
         this.createCourseView = createCourseView;
@@ -43,8 +44,22 @@ public class CreateCoursePresenter {
             String description = this.createCourseView.descriptionFld.getText();
             String requirements = this.createCourseView.requirementsFld.getText();
             String topic = this.createCourseView.topicFld.getText();
+            String bannerPath = "";
 
-            this.courseDAO.add(new CourseModel(title, description, "", requirements, topic, CoursexUI.myProfile.getId()));
+            if (bannerFile != null) {
+                String ext = FilenameUtils.getExtension(bannerFile.getName());
+                String newName = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), ext);
+                File dest = new File(System.getProperty("user.home") + "/Desktop/CourseX/banners", newName);
+                bannerPath = dest.getPath();
+                try {
+                    FileUtils.copyFile(bannerFile, dest);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            this.courseDAO.add(new CourseModel(title, description, bannerPath, requirements, topic, CoursexUI.myProfile.getId()));
             int courseId = this.courseDAO.getData().get(0).getId();
 
             if (!contentFiles.isEmpty()) {
@@ -53,7 +68,7 @@ public class CreateCoursePresenter {
                         String ext = FilenameUtils.getExtension(file.getName());
                         String originalName = FilenameUtils.getBaseName(file.getName());
                         String newName = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), ext);
-                        File dest = new File(System.getProperty("user.home") + "/Desktop/CourseX", newName);
+                        File dest = new File(System.getProperty("user.home") + "/Desktop/CourseX/videos", newName);
                         FileUtils.copyFile(file, dest);
 
                         videoDAO.add(new VideoModel(originalName, dest.getPath(), courseId));
@@ -91,7 +106,7 @@ public class CreateCoursePresenter {
 
     private void addBanner() {
         this.createCourseView.bannerBtn.setOnAction(e -> {
-            File bannerFile = createCourseView.contentChooser.showOpenDialog(CoursexUI.window);
+            bannerFile = createCourseView.bannerChooser.showOpenDialog(CoursexUI.window);
         });
     }
 

@@ -32,6 +32,7 @@ public class CoursesView extends ScrollPane {
     public HBox searchSection = new HBox();
     public TextField searchFld = new TextField();
     public Button searchBtn = new Button("Search");
+    public Button clearBtn = new Button("Clear");
 
     public Image image = new Image(new FileInputStream("assets/img/coursesBG.png"));
     //Setting the image view
@@ -65,23 +66,31 @@ public class CoursesView extends ScrollPane {
         this.imageView.setFitHeight(408);
         this.imageView.setFitWidth(1520);
     }
-    private void searchSection(){
+
+    private void searchSection() {
         this.searchSection.setAlignment(Pos.CENTER);
-        this.searchSection.setPadding(new Insets(30,0,30,0));
+        this.searchSection.setPadding(new Insets(30, 0, 30, 0));
         this.searchSection.getChildren().add(this.searchFld);
-        this.searchSection.setMargin(this.searchFld,new Insets(0, 10, 00, 0));
+        this.searchSection.setMargin(this.searchFld, new Insets(0, 10, 00, 0));
         this.searchFld.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.searchFld.setPromptText("Search By Title");
         this.searchFld.setStyle(
                 "-fx-text-inner-color: white; " +
                         "-fx-control-inner-background: #1F1F21; " +
                         "-fx-background-color: -fx-control-inner-background;" +
-                        " -fx-min-height: 40; -fx-prompt-text-fill: #87878D; -fx-min-width: 600;" );
+                        " -fx-min-height: 40; -fx-prompt-text-fill: #87878D; -fx-min-width: 600;");
 
         this.searchSection.getChildren().add(this.searchBtn);
         this.searchBtn.setStyle("-fx-background-color: white; -fx-min-height: 40; -fx-min-width: 120;");
         this.searchBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
         this.searchBtn.setCursor(Cursor.HAND);
+
+        HBox.setMargin(this.clearBtn, new Insets(0, 0, 0, 5));
+
+        this.searchSection.getChildren().add(this.clearBtn);
+        this.clearBtn.setStyle("-fx-background-color: white; -fx-min-height: 40; -fx-min-width: 120;");
+        this.clearBtn.setFont(Font.font("roboto", FontWeight.NORMAL, 16));
+        this.clearBtn.setCursor(Cursor.HAND);
     }
 
     private void viewNavBar() throws FileNotFoundException {
@@ -94,7 +103,8 @@ public class CoursesView extends ScrollPane {
         this.logo.setFont(Font.font("roboto", FontWeight.BOLD, FontPosture.REGULAR, 20));
         this.logo.setFill(Color.WHITE);
     }
-    private void leftList(){
+
+    private void leftList() {
         this.leftList.setAlignment(Pos.CENTER_RIGHT);
         this.leftList.getChildren().add(this.createCourse);
         this.leftList.setSpacing(8);
