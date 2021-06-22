@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import models.video.VideoDAO;
 import utils.*;
 
 
@@ -100,6 +101,10 @@ public class CourseDAO {
 
 
     public void delete(int id) {
+        VideoDAO videoDAO = new VideoDAO();
+
+        videoDAO.deleteCourseVideos(id);
+
         String query = "delete from courses where id= '" + id + "'";
         int rows = BasicDB.manipulate(query);
     }

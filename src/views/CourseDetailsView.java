@@ -29,12 +29,12 @@ public class CourseDetailsView extends ScrollPane {
     public Text descriptionContent = new Text("descriptionContent");
     public Text requirementsLb = new Text("requirements");
     public Text requirementsContent = new Text("requirementsContent");
-    public Text topicContent = new Text("React");
+    public Text topicContent = new Text("Topic");
     public Text createdBy = new Text("Created By");
     public Text instructorName = new Text("instructorName ");
     public Text allVideosLb = new Text("All Videos");
     public VBox videos = new VBox();
-    public Button editCourseBtn = new Button("Edit Course");
+
     public Button removeCourseBtn = new Button("Remove Course");
     public HBox buttonGroup = new HBox();
     public Button backBtn = new Button("Back");
@@ -44,21 +44,23 @@ public class CourseDetailsView extends ScrollPane {
     public CourseDetailsView() throws FileNotFoundException {
         attachLayout();
     }
-    public void attachLayout(){
+
+    public void attachLayout() {
         this.setContent(this.interfaceView);
         this.interfaceView.getChildren().add(this.heroBox);
         this.interfaceView.getChildren().add(this.bodyBox);
         heroBox();
         bodySection();
     }
-    private void heroBox(){
-        this.heroBox.setPadding(new Insets(0,60,0,60));
+
+    private void heroBox() {
+        this.heroBox.setPadding(new Insets(0, 60, 0, 60));
         this.heroBox.setStyle("-fx-background-color: #2D3134;");
-        this.heroBox.setMinSize(1400,400);
+        this.heroBox.setMinSize(1400, 400);
         this.heroBox.getChildren().add(this.infoBox);
         this.heroBox.getChildren().add(this.imageView);
-        this.heroBox.setAlignment(this.infoBox,Pos.CENTER_LEFT);
-        this.heroBox.setAlignment(this.imageView,Pos.CENTER_RIGHT);
+        this.heroBox.setAlignment(this.infoBox, Pos.CENTER_LEFT);
+        this.heroBox.setAlignment(this.imageView, Pos.CENTER_RIGHT);
         this.imageView.setFitHeight(350);
         this.imageView.setFitWidth(334);
         infoSection();
@@ -84,19 +86,15 @@ public class CourseDetailsView extends ScrollPane {
         this.instructorName.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 20));
         this.instructorName.setFill(Color.WHITE);
         this.infoBox.getChildren().add(this.buttonGroup);
-        this.buttonGroup.getChildren().add(this.editCourseBtn);
-        this.editCourseBtn.setStyle("-fx-background-color: #0787F9; -fx-min-height: 30; -fx-text-fill: white; -fx-min-width: 150;");
-        this.editCourseBtn.setCursor(Cursor.HAND);
-        this.editCourseBtn.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
-        this.buttonGroup.setMargin(this.editCourseBtn, new Insets(0,10,0,0));
         this.buttonGroup.getChildren().add(this.removeCourseBtn);
         this.removeCourseBtn.setStyle("-fx-background-color:  #F82D56; -fx-min-height: 30; -fx-text-fill: white; -fx-min-width: 150;");
         this.removeCourseBtn.setCursor(Cursor.HAND);
         this.removeCourseBtn.setFont(Font.font("roboto", FontWeight.NORMAL, FontPosture.REGULAR, 16));
     }
-    private void bodySection(){
+
+    private void bodySection() {
         this.bodyBox.setStyle("-fx-background-color: white");
-        this.bodyBox.setPadding(new Insets(0,60,0,60));
+        this.bodyBox.setPadding(new Insets(0, 60, 0, 60));
         this.bodyBox.setSpacing(10);
         this.bodyBox.setAlignment(Pos.TOP_LEFT);
         this.bodyBox.getChildren().add(this.descriptionLb);

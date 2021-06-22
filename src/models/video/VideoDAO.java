@@ -84,5 +84,10 @@ public class VideoDAO {
         int rows = BasicDB.manipulate(query);
     }
 
+    public void deleteCourseVideos(int courseId) {
+        String query = "delete from videos where course_id= '" + courseId + "'";
+        int rows = BasicDB.manipulate(query);
+    }
+
 
 }

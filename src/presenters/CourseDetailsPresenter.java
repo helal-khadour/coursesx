@@ -10,6 +10,8 @@ import components.VideoTileComponent;
 import coursex.CoursexUI;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -87,12 +89,28 @@ public class CourseDetailsPresenter {
                 stage.setTitle(video.getName());
                 stage.setScene(scene);
                 stage.show();
-                // Hide this current window (if this is what you want)
-                ((Node) (action.getSource())).getScene().getWindow().hide();
+
             });
 
             this.courseDetailsView.videos.getChildren().add(videoTileComponent);
 
+            this.courseDetailsView.removeCourseBtn.setOnAction(action -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Are you sure you want to delete the course?");
+
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        courseDAO.delete(courseModel.getId());
+                        try {
+                            CoursesView coursesView = new CoursesView();
+                            CoursesPresenter coursesPresenter = new CoursesPresenter(coursesView);
+                            CoursexUI.window.getScene().setRoot(coursesView);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            });
         }
 
     }
